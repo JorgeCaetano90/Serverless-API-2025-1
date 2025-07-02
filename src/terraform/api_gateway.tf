@@ -37,6 +37,18 @@ resource "aws_apigatewayv2_route" "lambda_route_demo" {
   target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
 }
 
+resource "aws_apigatewayv2_route" "lambda_route_jc_get" {
+  api_id    = aws_apigatewayv2_api.main_api.id
+  route_key = "GET /jc/users"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+}
+
+resource "aws_apigatewayv2_route" "lambda_route_jc_post" {
+  api_id    = aws_apigatewayv2_api.main_api.id
+  route_key = "POST /jc/users"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+}
+
 resource "aws_apigatewayv2_route" "lambda_route_demo_aula" {
   api_id    = aws_apigatewayv2_api.main_api.id
   route_key = "POST /demo/aula"
