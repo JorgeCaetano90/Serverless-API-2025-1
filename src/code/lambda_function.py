@@ -36,7 +36,6 @@ def lambda_handler(event, context):
     except Exception as e:
         return response(500, {"error": str(e)})
 
-
 def extract_user_id(path):
     """Extrai userId do path"""
     parts = path.split("/")
@@ -44,7 +43,6 @@ def extract_user_id(path):
         if len(part) == 36 and part.count("-") == 4:  # UUID format
             return part
     return None
-
 
 def create_user(event):
     """Cria novo usuário"""
@@ -64,7 +62,6 @@ def create_user(event):
     table.put_item(Item=item)
     return response(201, {"message": "Usuário criado", "userId": user_id})
 
-
 def get_user(user_id):
     """Busca usuário por ID"""
     if not user_id:
@@ -76,7 +73,6 @@ def get_user(user_id):
         return response(404, {"error": "Usuário não encontrado"})
 
     return response(200, {"user": result["Item"]})
-
 
 def update_user(user_id, event):
     """Atualiza dados do usuário"""
@@ -106,7 +102,6 @@ def update_user(user_id, event):
         200, {"message": "Usuário atualizado", "user": result["Attributes"]}
     )
 
-
 def delete_user(user_id):
     """Remove usuário"""
     if not user_id:
@@ -114,7 +109,6 @@ def delete_user(user_id):
 
     table.delete_item(Key={"userId": user_id})
     return response(200, {"message": "Usuário removido"})
-
 
 def response(status_code, data):
     """Resposta padronizada"""
