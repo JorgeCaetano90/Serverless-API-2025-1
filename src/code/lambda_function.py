@@ -15,8 +15,11 @@ s3 = boto3.client("s3")
 def lambda_handler(event, context):
     """Função principal - roteia requisições HTTP"""
 
+    # method = event.get("httpMethod", "")
+    # path = event.get("rawPath", "")
+
     method = event.get("httpMethod", "")
-    path = event.get("rawPath", "")
+    path = event.get("path", "")
 
     try:
         if method == "POST" and "/jc" in path:
