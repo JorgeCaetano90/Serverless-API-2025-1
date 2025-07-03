@@ -19,9 +19,9 @@ def lambda_handler(event, context):
     path = event.get("rawPath", "")
 
     try:
-        if method == "POST" and "/users" in path:
+        if method == "POST" and "/jc" in path:
             return create_user(event)
-        elif method == "GET" and "/users/" in path:
+        elif method == "GET" and "/jc/users/" in path:
             user_id = extract_user_id(path)
             return get_user(user_id)
         elif method == "PUT" and "/users/" in path:
